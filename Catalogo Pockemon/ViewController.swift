@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
-class ViewController: UIViewController, UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController {
+    
+    @IBOutlet var collection: UICollectionView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +22,12 @@ class ViewController: UIViewController, UICollectionView, UICollectionViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     
 
+}
+
+extension UITabBarController {
+    
 }
 
