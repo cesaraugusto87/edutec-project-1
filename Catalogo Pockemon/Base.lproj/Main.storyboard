@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Mas-->
         <scene sceneID="LF4-FB-tey">
             <objects>
                 <navigationController id="fRF-z1-AFa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="pPl-h5-VIK"/>
+                    <tabBarItem key="tabBarItem" title="Mas" image="dot-more" selectedImage="dot-more" id="pPl-h5-VIK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eYj-X9-2Q2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -88,6 +88,23 @@
             </objects>
             <point key="canvasLocation" x="2492" y="192.95352323838082"/>
         </scene>
+        <!--Por tipos-->
+        <scene sceneID="Xx1-fD-Y44">
+            <objects>
+                <navigationController id="cqV-nA-jJ8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Por tipos" image="list-simple-star" selectedImage="list-simple-star" id="WKN-cu-fdH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bbs-mw-Ssa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vSO-ZV-ld9" kind="relationship" relationship="rootViewController" id="qdD-ej-Emf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="knL-AA-qQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1705" y="922"/>
+        </scene>
         <!--Pokemon Type Controller-->
         <scene sceneID="wgL-oV-SCq">
             <objects>
@@ -135,6 +152,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="L3U-vg-qdQ"/>
                     <connections>
                         <outlet property="pokemonTypesTbl" destination="5kC-Py-f5u" id="XzT-FW-iHD"/>
                     </connections>
@@ -142,6 +160,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukO-pL-Kzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3200.8000000000002" y="193.85307346326837"/>
+        </scene>
+        <!--Bycategories Controller-->
+        <scene sceneID="jOE-3W-ajf">
+            <objects>
+                <viewController storyboardIdentifier="bycategoriesController" id="oUg-Tv-8cc" customClass="bycategoriesController" customModule="Catalogo_Pockemon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J8i-lR-mPe"/>
+                        <viewControllerLayoutGuide type="bottom" id="y9V-M4-aPt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ql1-1s-VYx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O48-ir-UZI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonByTypeCell" rowHeight="116" id="7Zx-6A-YL2" customClass="pokemonCell" customModule="Catalogo_Pockemon" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="116"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="7Zx-6A-YL2" id="rHn-sD-9uX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unknown" translatesAutoresizingMaskIntoConstraints="NO" id="o93-04-bFF" userLabel="picture">
+                                                    <rect key="frame" x="8" y="3" width="162" height="105"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pokemon Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teB-jc-NAk" userLabel="name">
+                                                    <rect key="frame" x="178" y="47" width="166" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="pokemonName" destination="teB-jc-NAk" id="4uv-i2-zbW"/>
+                                            <outlet property="pokemonPicture" destination="o93-04-bFF" id="0iz-tM-ueC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="pokemonTable" destination="O48-ir-UZI" id="JU8-sz-aCx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGS-sH-eXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3901.5999999999999" y="192.95352323838082"/>
         </scene>
         <!--About Page Controller-->
         <scene sceneID="epF-Lm-E4o">
@@ -183,13 +256,17 @@
                                 <color key="textColor" red="0.0" green="0.25882352941176467" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dragon" translatesAutoresizingMaskIntoConstraints="NO" id="oLU-l0-8nR">
+                                <rect key="frame" x="63" y="383" width="240" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jO9-89-dLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3893.5999999999999" y="193.85307346326837"/>
+            <point key="canvasLocation" x="3941.5999999999999" y="-510.49475262368821"/>
         </scene>
         <!--Todos-->
         <scene sceneID="6wd-RA-9LL">
@@ -229,7 +306,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="136"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="Dam-7P-ULM" id="WQu-qg-CCR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="135.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="JK8-JY-IMh" userLabel="picture">
@@ -427,6 +504,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Ac5-ey-Psp" kind="relationship" relationship="viewControllers" id="M9r-LT-ZIG"/>
+                        <segue destination="cqV-nA-jJ8" kind="relationship" relationship="viewControllers" id="BUA-1o-HWt"/>
                         <segue destination="fRF-z1-AFa" kind="relationship" relationship="viewControllers" id="Zfm-Do-KG7"/>
                     </connections>
                 </tabBarController>
@@ -436,6 +514,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dot-more" width="30" height="30"/>
+        <image name="dragon" width="500" height="500"/>
+        <image name="list-simple-star" width="30" height="30"/>
         <image name="logo_launchscreen" width="666" height="245"/>
         <image name="text-list" width="30" height="30"/>
         <image name="unknown" width="500" height="500"/>

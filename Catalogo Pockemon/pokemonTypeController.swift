@@ -24,6 +24,15 @@ class pokemonTypeController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let details = storyboard?.instantiateViewController(withIdentifier: "bycategoriesController") as! bycategoriesController
+        let apiInfo: [String: AnyObject] = pokemonTypes![indexPath.row] as! [String: AnyObject]
+        
+        details.apiUrl = apiInfo["url"] as? String
+        
+        self.navigationController?.pushViewController(details, animated: true)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

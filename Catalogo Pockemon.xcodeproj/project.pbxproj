@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14017930353DC6CA32434012 /* Pods_Catalogo_Pockemon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A00CEA646C7E572A5DE10F /* Pods_Catalogo_Pockemon.framework */; };
+		21648F201EACF27C00D900CA /* byCategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21648F1F1EACF27C00D900CA /* byCategoriesController.swift */; };
 		2182D5941EAAEDFE003F4D37 /* morePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2182D5931EAAEDFE003F4D37 /* morePageController.swift */; };
 		2182D5971EAAEE6C003F4D37 /* tabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2182D5961EAAEE6C003F4D37 /* tabBarController.swift */; };
 		2182D59A1EAB1026003F4D37 /* pokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2182D5991EAB1026003F4D37 /* pokemonCell.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21648F1F1EACF27C00D900CA /* byCategoriesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = byCategoriesController.swift; sourceTree = "<group>"; };
 		2182D5931EAAEDFE003F4D37 /* morePageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = morePageController.swift; sourceTree = "<group>"; };
 		2182D5961EAAEE6C003F4D37 /* tabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarController.swift; sourceTree = "<group>"; };
 		2182D5991EAB1026003F4D37 /* pokemonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pokemonCell.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				218C5A3F1EAC15420024A1CD /* pokemonTypeController.swift */,
 				21EBC0C01EAC3A5D007E45F3 /* moreController.swift */,
 				21EBC0C21EAC433A007E45F3 /* aboutPageController.swift */,
+				21648F1F1EACF27C00D900CA /* byCategoriesController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				218C5A421EAC15570024A1CD /* pokemonTypeCell.swift in Sources */,
 				2182D5971EAAEE6C003F4D37 /* tabBarController.swift in Sources */,
 				3087751D1EAAAA2400110C92 /* AppDelegate.swift in Sources */,
+				21648F201EACF27C00D900CA /* byCategoriesController.swift in Sources */,
 				218C5A3E1EABEDE80024A1CD /* pokemonDetailsController.swift in Sources */,
 				2182D5941EAAEDFE003F4D37 /* morePageController.swift in Sources */,
 				218C5A461EAC31210024A1CD /* moreOptionsCell.swift in Sources */,

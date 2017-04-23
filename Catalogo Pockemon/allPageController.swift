@@ -57,7 +57,6 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loadDataFromApi(url: apiUrl);
-        
         pokemonTable?.dataSource = self
         pokemonTable?.delegate = self
         ALLoadingView.manager.hideLoadingView()
