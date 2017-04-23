@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
+
 class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var pokemonTable: UITableView?
@@ -28,6 +29,12 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return 1;
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let details = storyboard?.instantiateViewController(withIdentifier: "pokemonDetails") as! pokemonDetailsController
+        details.pokemonId = String(indexPath.row+1)
+        self.navigationController?.pushViewController(details, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (pokemonArray?.count)!
     }
@@ -38,7 +45,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let pokemonInfo: [String: AnyObject] = pokemonArray![indexPath.row] as! [String: AnyObject]
         
         
-        cell.pokemonName?.text = pokemonInfo["name"] as? String
+        cell.pokemonName?.text = (pokemonInfo["name"] as? String)?.capitalized
         
         let pokemonId = (((pokemonInfo["url"] as! String).components(separatedBy: "/") as NSArray)[6]) as! String
         
