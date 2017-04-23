@@ -39,10 +39,6 @@ class pokemonTypeController: UIViewController, UITableViewDelegate, UITableViewD
         cell.pokemonTypeName?.text = typeInfo["name"] as? String
         cell.pokemonTypeImage?.image = UIImage(named: typeInfo["value"] as! String)
         
-        print(typeInfo)
-         /* cell.pokemonTypeName.text = typeInfo.value(forKey: "name") as? String
-         cell.pokemonTypeImage?.image = UIImage(named: typeInfo.value(forKey: "value") as! String) */
-        
         return cell
     }
     

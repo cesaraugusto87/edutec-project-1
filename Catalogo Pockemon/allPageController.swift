@@ -18,30 +18,49 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var apiUrl: String = "https://pokeapi.co/api/v2/pokemon/"
     var backPageLink: String?
     var nextPageLink: String?
-    var pageCounter: Int = 1
+    var pageCounter: Int = 0
     
+    @IBOutlet var quantityTitle: UILabel!
     @IBOutlet var pokemonTable: UITableView?
     
     @IBAction func backPage(_ sender: UIButton) {
         if ((backPageLink) != nil) {
-        loadDataFromApi(url: backPageLink!)
-            pageCounter = pageCounter - 1
+            ALLoadingView.manager.blurredBackground = true
+            ALLoadingView.manager.showLoadingView(ofType: .basic, windowMode: .fullscreen)
+            loadDataFromApi(url: backPageLink!)
+            pageCounter = pageCounter - 2
+            quantityTitle.text = "Viendo " + String(pageCounter * 20) + " de 1600"
         }
     }
     @IBAction func nextPage(_ sender: Any) {
         if ((nextPageLink) != nil) {
+            ALLoadingView.manager.blurredBackground = true
+            ALLoadingView.manager.showLoadingView(ofType: .basic, windowMode: .fullscreen)
             loadDataFromApi(url: nextPageLink!)
-            pageCounter = pageCounter + 1
+            pageCounter = pageCounter + 2
+            quantityTitle.text = "Viendo " + String(pageCounter * 20) + " de 1600"
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool){
+        if ( (pokemonArray?.count)! == 0 ) {
+        ALLoadingView.manager.blurredBackground = true
+        ALLoadingView.manager.showLoadingView(ofType: .basic, windowMode: .fullscreen)
+        }else{
+            ALLoadingView.manager.hideLoadingView(withDelay: 0)
+        }
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        ALLoadingView.manager.hideLoadingView()
         loadDataFromApi(url: apiUrl);
+        
         pokemonTable?.dataSource = self
         pokemonTable?.delegate = self
+        ALLoadingView.manager.hideLoadingView()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,7 +75,6 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }else{
             details.pokemonId = String(indexPath.row+1)
         }
-        
         
         self.navigationController?.pushViewController(details, animated: true)
     }
@@ -88,6 +106,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func loadDataFromApi(url: String) -> Void {
         apiUrl = url
+        
         Alamofire.request(url).responseJSON
             { response in
                 switch (response.result) {
@@ -98,6 +117,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     self.backPageLink = response.object(forKey: "previous")! as? String
                     self.nextPageLink = response.object(forKey: "next")! as? String
                     self.pokemonTable?.reloadData()
+                    ALLoadingView.manager.hideLoadingView()
                                    }
                     break
                 case .failure(let error):

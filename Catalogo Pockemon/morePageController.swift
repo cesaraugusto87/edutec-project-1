@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ALLoadingView
 
 class morePageController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,7 @@ class morePageController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         moreTbl?.delegate = self
         moreTbl?.dataSource = self
+        ALLoadingView.manager.hideLoadingView()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

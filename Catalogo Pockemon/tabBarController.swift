@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import ALLoadingView
 
 class tabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ALLoadingView.manager.hideLoadingView()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
