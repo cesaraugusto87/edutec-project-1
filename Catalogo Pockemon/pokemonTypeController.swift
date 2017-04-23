@@ -8,22 +8,17 @@
 
 import UIKit
 import SwiftyJSON
-import CoreData
 
 class pokemonTypeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var pokemonTypesTbl: UITableView!
     
-    @IBAction func viewPokemonTypes () {
-        
-    }
-    
-    var pokemonTypes: JSON?
-    var typesList: [NSManagedObject] = []
+    var pokemonTypes: NSArray? = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        loadJSONInfo()
         pokemonTypesTbl?.delegate = self
         pokemonTypesTbl?.dataSource = self
         
@@ -34,27 +29,31 @@ class pokemonTypeController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return typesList.count
+        return (pokemonTypes?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonTypeCell", for: indexPath) as! pokemonTypeCell
-        let typeInfo: NSManagedObject = typesList[indexPath.row]
+        let typeInfo: [String: AnyObject] = pokemonTypes![indexPath.row] as! [String: AnyObject]
         
-         cell.pokemonTypeName.text = typeInfo.value(forKey: "name") as? String
-         cell.pokemonTypeImage?.image = UIImage(named: typeInfo.value(forKey: "value") as! String)
+        cell.pokemonTypeName?.text = typeInfo["name"] as? String
+        cell.pokemonTypeImage?.image = UIImage(named: typeInfo["value"] as! String)
+        
+        print(typeInfo)
+         /* cell.pokemonTypeName.text = typeInfo.value(forKey: "name") as? String
+         cell.pokemonTypeImage?.image = UIImage(named: typeInfo.value(forKey: "value") as! String) */
         
         return cell
     }
     
     func loadJSONInfo() -> Void {
-        if let path = Bundle.main.path(forResource: "pokemonType", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "typeinfo", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                pokemonTypes = JSON(data: data)
+                let info = try JSONSerialization.jsonObject(with: data, options: []) as! NSArray
+                pokemonTypes = info
             } catch let error {
                 print(error.localizedDescription)
-                
             }
         } else {
             print("Invalid filename/path")

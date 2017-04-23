@@ -14,7 +14,9 @@ import ALLoadingView
 
 
 class pokemonDetailsController: UIViewController{
+    
     var pokemonId: String?
+    var pageId: String?
     let imageUrl: String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
     let apiUrl: String = "https://pokeapi.co/api/v2/pokemon/"
     
@@ -24,7 +26,7 @@ class pokemonDetailsController: UIViewController{
     @IBOutlet var weight: UILabel!
     @IBOutlet var height: UILabel!
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool){
         ALLoadingView.manager.blurredBackground = true
         ALLoadingView.manager.showLoadingView(ofType: .basic, windowMode: .fullscreen)
     }

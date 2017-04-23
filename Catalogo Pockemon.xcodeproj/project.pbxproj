@@ -15,6 +15,9 @@
 		218C5A401EAC15420024A1CD /* pokemonTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C5A3F1EAC15420024A1CD /* pokemonTypeController.swift */; };
 		218C5A421EAC15570024A1CD /* pokemonTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C5A411EAC15570024A1CD /* pokemonTypeCell.swift */; };
 		218C5A461EAC31210024A1CD /* moreOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C5A451EAC31210024A1CD /* moreOptionsCell.swift */; };
+		21EBC0C11EAC3A5D007E45F3 /* moreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EBC0C01EAC3A5D007E45F3 /* moreController.swift */; };
+		21EBC0C31EAC433A007E45F3 /* aboutPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EBC0C21EAC433A007E45F3 /* aboutPageController.swift */; };
+		21EBC0C61EAC4D02007E45F3 /* typeinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 21EBC0C51EAC4D02007E45F3 /* typeinfo.json */; };
 		3087751D1EAAAA2400110C92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3087751C1EAAAA2400110C92 /* AppDelegate.swift */; };
 		3087751F1EAAAA2400110C92 /* allPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3087751E1EAAAA2400110C92 /* allPageController.swift */; };
 		308775221EAAAA2400110C92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308775201EAAAA2400110C92 /* Main.storyboard */; };
@@ -29,8 +32,10 @@
 		218C5A3D1EABEDE80024A1CD /* pokemonDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pokemonDetailsController.swift; sourceTree = "<group>"; };
 		218C5A3F1EAC15420024A1CD /* pokemonTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pokemonTypeController.swift; sourceTree = "<group>"; };
 		218C5A411EAC15570024A1CD /* pokemonTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pokemonTypeCell.swift; sourceTree = "<group>"; };
-		218C5A431EAC18D20024A1CD /* pokemonType.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pokemonType.json; sourceTree = "<group>"; };
 		218C5A451EAC31210024A1CD /* moreOptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = moreOptionsCell.swift; sourceTree = "<group>"; };
+		21EBC0C01EAC3A5D007E45F3 /* moreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = moreController.swift; sourceTree = "<group>"; };
+		21EBC0C21EAC433A007E45F3 /* aboutPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutPageController.swift; sourceTree = "<group>"; };
+		21EBC0C51EAC4D02007E45F3 /* typeinfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = typeinfo.json; path = Assets/typeinfo.json; sourceTree = "<group>"; };
 		308775191EAAAA2400110C92 /* Catalogo Pockemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catalogo Pockemon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3087751C1EAAAA2400110C92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3087751E1EAAAA2400110C92 /* allPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPageController.swift; sourceTree = "<group>"; };
@@ -72,6 +77,8 @@
 				2182D5961EAAEE6C003F4D37 /* tabBarController.swift */,
 				218C5A3D1EABEDE80024A1CD /* pokemonDetailsController.swift */,
 				218C5A3F1EAC15420024A1CD /* pokemonTypeController.swift */,
+				21EBC0C01EAC3A5D007E45F3 /* moreController.swift */,
+				21EBC0C21EAC433A007E45F3 /* aboutPageController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -86,12 +93,12 @@
 			name = cells;
 			sourceTree = "<group>";
 		};
-		218C5A441EAC19D10024A1CD /* json */ = {
+		21EBC0C41EAC4B65007E45F3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				218C5A431EAC18D20024A1CD /* pokemonType.json */,
+				21EBC0C51EAC4D02007E45F3 /* typeinfo.json */,
 			);
-			name = json;
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		308775101EAAAA2400110C92 = {
@@ -115,7 +122,7 @@
 		3087751B1EAAAA2400110C92 /* Catalogo Pockemon */ = {
 			isa = PBXGroup;
 			children = (
-				218C5A441EAC19D10024A1CD /* json */,
+				21EBC0C41EAC4B65007E45F3 /* Assets */,
 				2182D5981EAB1000003F4D37 /* cells */,
 				2182D5951EAAEE03003F4D37 /* Controllers */,
 				3087751C1EAAAA2400110C92 /* AppDelegate.swift */,
@@ -201,6 +208,7 @@
 				308775271EAAAA2400110C92 /* LaunchScreen.storyboard in Resources */,
 				308775241EAAAA2400110C92 /* Assets.xcassets in Resources */,
 				308775221EAAAA2400110C92 /* Main.storyboard in Resources */,
+				21EBC0C61EAC4D02007E45F3 /* typeinfo.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21EBC0C31EAC433A007E45F3 /* aboutPageController.swift in Sources */,
+				21EBC0C11EAC3A5D007E45F3 /* moreController.swift in Sources */,
 				2182D59A1EAB1026003F4D37 /* pokemonCell.swift in Sources */,
 				218C5A401EAC15420024A1CD /* pokemonTypeController.swift in Sources */,
 				3087751F1EAAAA2400110C92 /* allPageController.swift in Sources */,

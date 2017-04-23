@@ -64,15 +64,15 @@
  "value": "poison"
  },
  {
- "name": "Volador"
+ "name": "Volador",
  "value": "flying"
  },
  {
- "name": "Hierro"
+ "name": "Hierro",
  "value": "steel"
  },
  {
- "name": "Desconocido"
+ "name": "Desconocido",
  "value": "unknown"
  }
  ]

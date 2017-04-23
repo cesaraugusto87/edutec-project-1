@@ -9,18 +9,37 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import ALLoadingView
 
 
 class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet var pokemonTable: UITableView?
     
     var pokemonArray: NSArray? = NSArray()
+    var apiUrl: String = "https://pokeapi.co/api/v2/pokemon/"
+    var backPageLink: String?
+    var nextPageLink: String?
+    var pageCounter: Int = 1
+    
+    @IBOutlet var pokemonTable: UITableView?
+    
+    @IBAction func backPage(_ sender: UIButton) {
+        if ((backPageLink) != nil) {
+        loadDataFromApi(url: backPageLink!)
+            pageCounter = pageCounter - 1
+        }
+    }
+    @IBAction func nextPage(_ sender: Any) {
+        if ((nextPageLink) != nil) {
+            loadDataFromApi(url: nextPageLink!)
+            pageCounter = pageCounter + 1
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        loadDataFromApi();
+        ALLoadingView.manager.hideLoadingView()
+        loadDataFromApi(url: apiUrl);
         pokemonTable?.dataSource = self
         pokemonTable?.delegate = self
     }
@@ -31,7 +50,14 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let details = storyboard?.instantiateViewController(withIdentifier: "pokemonDetails") as! pokemonDetailsController
-        details.pokemonId = String(indexPath.row+1)
+    
+        if(pageCounter > 1){
+            details.pokemonId = String((indexPath.row+1) + (pageCounter * 10))
+        }else{
+            details.pokemonId = String(indexPath.row+1)
+        }
+        
+        
         self.navigationController?.pushViewController(details, animated: true)
     }
     
@@ -43,7 +69,6 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! pokemonCell
         let pokemonInfo: [String: AnyObject] = pokemonArray![indexPath.row] as! [String: AnyObject]
-        
         
         cell.pokemonName?.text = (pokemonInfo["name"] as? String)?.capitalized
         
@@ -61,15 +86,27 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadDataFromApi() -> Void {
-        Alamofire.request("https://pokeapi.co/api/v2/pokemon/").responseJSON
+    func loadDataFromApi(url: String) -> Void {
+        apiUrl = url
+        Alamofire.request(url).responseJSON
             { response in
-                
+                switch (response.result) {
+                case .success:
                 if let JSON = response.result.value {
                     let response = JSON as! NSDictionary
                     self.pokemonArray = response.object(forKey: "results")! as? NSArray
+                    self.backPageLink = response.object(forKey: "previous")! as? String
+                    self.nextPageLink = response.object(forKey: "next")! as? String
                     self.pokemonTable?.reloadData()
                                    }
+                    break
+                case .failure(let error):
+                    if error._code == NSURLErrorTimedOut {
+                        print("Server Down")
+                    }
+                    print("\n\nAuth request failed with error:\n \(error)")
+                    break
+                }
         }
         
        }

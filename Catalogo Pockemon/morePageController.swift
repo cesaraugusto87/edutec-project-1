@@ -8,16 +8,15 @@
 
 import UIKit
 
-class morePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class morePageController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var moreTbl: UITableView!
-    let moreOptions: NSArray = ["Definicion de las Clasificaciones","Cargar mas Pokemones","Acerca de"]
+    let moreOptions: [String] = ["Definicion de las Clasificaciones","Acerca de"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moreTbl.delegate = self
-       
-        // Do any additional setup after loading the view, typically from a nib.
+        moreTbl?.delegate = self
+        moreTbl?.dataSource = self
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -29,15 +28,27 @@ class morePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "moreOptionsCell", for: indexPath) as! moreOptionsCell
         
-        cell.optionName.text = moreOptions[indexPath.row] as? String
+        cell.optionName?.text = moreOptions[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch indexPath.row {
+        case 0:
+            let details = storyboard?.instantiateViewController(withIdentifier: "pokemonTypeController") as! pokemonTypeController
+            self.navigationController?.pushViewController(details, animated: true)
+            break
+        case 1:
+            let details = storyboard?.instantiateViewController(withIdentifier: "aboutPage") as! aboutPageController
+            self.navigationController?.pushViewController(details, animated: true)
+            break
+        default:
+            print("Nada")
+        }
     }
     
     override func didReceiveMemoryWarning() {

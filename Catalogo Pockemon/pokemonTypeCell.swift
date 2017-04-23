@@ -10,6 +10,7 @@ import UIKit
 
 
 class pokemonTypeCell: UITableViewCell {
+    
     @IBOutlet var pokemonTypeImage: UIImageView!
     @IBOutlet var pokemonTypeName: UILabel!
 
