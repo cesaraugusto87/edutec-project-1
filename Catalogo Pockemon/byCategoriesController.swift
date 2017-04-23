@@ -70,7 +70,7 @@ class bycategoriesController: UIViewController , UITableViewDelegate, UITableVie
         
         details.pokemonId = ((((pokemonInfo["pokemon"] as? NSDictionary)?["url"] as! String).components(separatedBy: "/") as NSArray)[6]) as? String
         
-        
+        tableView.deselectRow(at: indexPath, animated: false)
         self.navigationController?.pushViewController(details, animated: true)
     }
     

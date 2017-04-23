@@ -29,7 +29,7 @@ class pokemonTypeController: UIViewController, UITableViewDelegate, UITableViewD
         let apiInfo: [String: AnyObject] = pokemonTypes![indexPath.row] as! [String: AnyObject]
         
         details.apiUrl = apiInfo["url"] as? String
-        
+        tableView.deselectRow(at: indexPath, animated: false)
         self.navigationController?.pushViewController(details, animated: true)
     }
     

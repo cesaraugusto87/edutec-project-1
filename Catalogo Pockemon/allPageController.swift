@@ -74,7 +74,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }else{
             details.pokemonId = String(indexPath.row+1)
         }
-        
+        tableView.deselectRow(at: indexPath, animated: false)
         self.navigationController?.pushViewController(details, animated: true)
     }
     

@@ -39,6 +39,8 @@ class morePageController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
         switch indexPath.row {
         case 0:
             let details = storyboard?.instantiateViewController(withIdentifier: "pokemonTypeController") as! pokemonTypeController
@@ -49,7 +51,8 @@ class morePageController: UIViewController, UITableViewDelegate, UITableViewData
             self.navigationController?.pushViewController(details, animated: true)
             break
         default:
-            print("Nada")
+            print("Sin accion")
+            break
         }
     }
     
