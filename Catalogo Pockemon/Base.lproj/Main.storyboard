@@ -185,7 +185,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unknown" translatesAutoresizingMaskIntoConstraints="NO" id="o93-04-bFF" userLabel="picture">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pokemon_icon" translatesAutoresizingMaskIntoConstraints="NO" id="o93-04-bFF" userLabel="picture">
                                                     <rect key="frame" x="8" y="3" width="162" height="105"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -309,7 +309,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="JK8-JY-IMh" userLabel="picture">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pokemon_icon" translatesAutoresizingMaskIntoConstraints="NO" id="JK8-JY-IMh" userLabel="picture">
                                                     <rect key="frame" x="8" y="3" width="185" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -514,6 +514,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Pokemon_icon" width="250" height="250"/>
         <image name="dot-more" width="30" height="30"/>
         <image name="dragon" width="500" height="500"/>
         <image name="list-simple-star" width="30" height="30"/>
