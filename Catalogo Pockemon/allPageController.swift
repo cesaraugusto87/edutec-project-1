@@ -10,9 +10,10 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import ALLoadingView
+import SwiftyJSON
 
 
-class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, ManagerDelegate {
     
     var pokemonArray: NSArray? = NSArray()
     var apiUrl: String = "https://pokeapi.co/api/v2/pokemon/"
@@ -51,7 +52,17 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func endPointResponse(tag: String, json: JSON) {
+        if (tag == "pokemon"){
+            print(json)
+        }
+    }
     
+    func getPokemon() -> Void {
+        let manager: Manager = Manager(tag: "pokemon", version: "v2")
+        manager.delegate = self
+        manager.getPokemon(endpoint: "pokemon", idPokemon: "1")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +71,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         pokemonTable?.dataSource = self
         pokemonTable?.delegate = self
         ALLoadingView.manager.hideLoadingView()
+        getPokemon()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -117,7 +129,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     self.nextPageLink = response.object(forKey: "next")! as? String
                     self.pokemonTable?.reloadData()
                     ALLoadingView.manager.hideLoadingView()
-                                   }
+                }
                     break
                 case .failure(let error):
                     if error._code == NSURLErrorTimedOut {
