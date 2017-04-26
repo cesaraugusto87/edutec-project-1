@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Canvas
 
 class pokemonCell: UITableViewCell {
     
     
     @IBOutlet var pokemonName: UILabel?
     @IBOutlet var pokemonPicture: UIImageView?
+    @IBOutlet var animationCell: CSAnimationView?
     
     
     override func awakeFromNib() {

@@ -52,14 +52,20 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
         }
     }
     
-    func endPointResponse(tag: String, json: JSON) {
-        if (tag == "pokemon"){
-            print(json)
+    func endPointResponse(tag: String, json: NSDictionary) {
+        if (tag == "allPokemons"){
+            
+            self.pokemonArray = json.object(forKey: "results")! as? NSArray
+            self.backPageLink = json.object(forKey: "previous")! as? String
+            self.nextPageLink = json.object(forKey: "next")! as? String
+            self.pokemonTable?.reloadData()
+            ALLoadingView.manager.hideLoadingView()
+
         }
     }
     
-    func getPokemon() -> Void {
-        let manager: Manager = Manager(tag: "pokemon", version: "v2")
+    func getPokemons() -> Void {
+        let manager: Manager = Manager(tag: "allPokemons", version: "v2")
         manager.delegate = self
         manager.getPokemon(endpoint: "pokemon", idPokemon: "1")
     }
@@ -67,11 +73,11 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        loadDataFromApi(url: apiUrl);
+     //   loadDataFromApi(url: apiUrl);
         pokemonTable?.dataSource = self
         pokemonTable?.delegate = self
         ALLoadingView.manager.hideLoadingView()
-        getPokemon()
+        getPokemons()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,6 +100,25 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
         return (pokemonArray?.count)!
     }
 
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let more = UITableViewRowAction(style: .normal, title: "...") { action, index in
+            print("more button tapped")
+        }
+        more.backgroundColor = UIColor.lightGray
+        
+        let favorite = UITableViewRowAction(style: .normal, title: "♡") { action, index in
+            print("favorite button tapped")
+        }
+        favorite.backgroundColor = UIColor.orange
+        
+        /*let share = UITableViewRowAction(style: .normal, title: "") { action, index in
+            print("share button tapped")
+        }
+        share.backgroundColor = UIColor.blue */
+        
+        return [favorite, more]
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! pokemonCell
@@ -106,6 +131,8 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
         let pokemonImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonId+".png"
         
         cell.pokemonPicture?.af_setImage(withURL: URL(string: pokemonImage)!)
+        
+        cell.animationCell?.startCanvasAnimation()
         
         return cell
     }
@@ -139,7 +166,6 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
                     break
                 }
         }
-        
        }
 }
 

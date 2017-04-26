@@ -10,8 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import ALLoadingView
-
-
+import Canvas
 
 class pokemonDetailsController: UIViewController{
     
@@ -25,6 +24,7 @@ class pokemonDetailsController: UIViewController{
     @IBOutlet var pokemonAbilities: UILabel!
     @IBOutlet var weight: UILabel!
     @IBOutlet var height: UILabel!
+    @IBOutlet var animationImage: CSAnimationView!
     
     override func viewWillAppear(_ animated: Bool){
         if(loadedPokemon == false) {
@@ -89,7 +89,7 @@ class pokemonDetailsController: UIViewController{
                         self.view.addSubview(imageView)
                     }
                     ALLoadingView.manager.hideLoadingView()
-                    
+                    self.animationImage.startCanvasAnimation()
                 }
         }
         

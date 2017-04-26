@@ -10,4 +10,5 @@ target 'Catalogo Pockemon' do
     pod 'AlamofireImage', '~> 3.1'
     pod 'ALLoadingView'
     pod 'SwiftyJSON'
+    pod 'Canvas'
 end
