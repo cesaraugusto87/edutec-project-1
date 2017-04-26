@@ -11,6 +11,7 @@ import Alamofire
 import AlamofireImage
 import ALLoadingView
 import SwiftyJSON
+import CoreData
 
 
 class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, ManagerDelegate {
@@ -20,6 +21,7 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
     var backPageLink: String?
     var nextPageLink: String?
     var pageCounter: Int = 0
+    var pokemonData: NSManagedObject?
     
     @IBOutlet var quantityTitle: UILabel!
     @IBOutlet var pokemonTable: UITableView?
@@ -99,24 +101,44 @@ class allPage: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (pokemonArray?.count)!
     }
-
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func getContext () -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let more = UITableViewRowAction(style: .normal, title: "...") { action, index in
-            print("more button tapped")
-        }
-        more.backgroundColor = UIColor.lightGray
         
         let favorite = UITableViewRowAction(style: .normal, title: "♡") { action, index in
-            print("favorite button tapped")
+            let context = self.getContext()
+            let entity = NSEntityDescription.entity(forEntityName: "Pokemon", in: context)
+            let pokemonInfo: [String: AnyObject] = self.pokemonArray![indexPath.row] as! [String: AnyObject]
+            let pokemonId = (((pokemonInfo["url"] as! String).components(separatedBy: "/") as NSArray)[6]) as! String
+            let newFavorite = NSManagedObject(entity: entity!, insertInto: context)
+            
+            newFavorite.setValue(pokemonId, forKey: "id")
+            newFavorite.setValue((pokemonInfo["name"] as? String), forKey: "name")
+            newFavorite.setValue(self.apiUrl+pokemonId, forKey: "url")
+            
+            do {
+                try context.save()
+                let alertController = UIAlertController(title: "Se agrego el Pokemon a tus Favoritos", message: "Puedes consultar tus favoritos en la opcion mas", preferredStyle: .alert)
+                self.present(alertController, animated: true, completion: nil)
+                let okAction = UIAlertAction(title:"Ok",style: .default) {(action:UIAlertAction) in
+                }
+                alertController.addAction(okAction)
+            } catch let error as NSError {
+                print("No se obtener la información: \(error), \(error.userInfo)")
+            }
+            
         }
         favorite.backgroundColor = UIColor.orange
         
-        /*let share = UITableViewRowAction(style: .normal, title: "") { action, index in
-            print("share button tapped")
-        }
-        share.backgroundColor = UIColor.blue */
-        
-        return [favorite, more]
+        return [favorite]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

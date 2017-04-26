@@ -12,7 +12,7 @@ import ALLoadingView
 class morePageController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var moreTbl: UITableView!
-    let moreOptions: [String] = ["Definicion de las Clasificaciones","Acerca de"]
+    let moreOptions: [String] = ["Definicion de las Clasificaciones","Mis Pokemones Favoritos","Acerca de"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +47,10 @@ class morePageController: UIViewController, UITableViewDelegate, UITableViewData
             self.navigationController?.pushViewController(details, animated: true)
             break
         case 1:
+            let details = storyboard?.instantiateViewController(withIdentifier: "favoritesPageController") as! favoritePageController
+            self.navigationController?.pushViewController(details, animated: true)
+            break
+        case 2:
             let details = storyboard?.instantiateViewController(withIdentifier: "aboutPage") as! aboutPageController
             self.navigationController?.pushViewController(details, animated: true)
             break

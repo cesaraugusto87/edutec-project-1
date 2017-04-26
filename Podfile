@@ -11,4 +11,5 @@ target 'Catalogo Pockemon' do
     pod 'ALLoadingView'
     pod 'SwiftyJSON'
     pod 'Canvas'
+    pod 'ReachabilitySwift', '~> 2.4'
 end

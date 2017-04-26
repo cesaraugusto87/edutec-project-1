@@ -11,6 +11,7 @@ import Alamofire
 import AlamofireImage
 import ALLoadingView
 import Canvas
+import CoreData
 
 class pokemonDetailsController: UIViewController{
     
@@ -26,6 +27,32 @@ class pokemonDetailsController: UIViewController{
     @IBOutlet var height: UILabel!
     @IBOutlet var animationImage: CSAnimationView!
     
+    func getContext () -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+
+    
+    @IBAction func addToFavorites(_ sender: Any) {
+        let context = getContext()
+        let entity = NSEntityDescription.entity(forEntityName: "Pokemon", in: context)
+        let newFavorite = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newFavorite.setValue(pokemonId, forKey: "id")
+        newFavorite.setValue(pokemonName.text, forKey: "name")
+        newFavorite.setValue(apiUrl+pokemonId!, forKey: "url")
+        
+        do {
+            try context.save()
+            let alertController = UIAlertController(title: "Se agrego el Pokemon a tus Favoritos", message: "Puedes consultar tus favoritos en la opcion mas", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
+            let okAction = UIAlertAction(title:"Ok",style: .default) {(action:UIAlertAction) in
+            }
+            alertController.addAction(okAction)
+        } catch let error as NSError {
+            print("No se obtener la información: \(error), \(error.userInfo)")
+        }
+    }
     override func viewWillAppear(_ animated: Bool){
         if(loadedPokemon == false) {
             ALLoadingView.manager.blurredBackground = true
@@ -94,5 +121,7 @@ class pokemonDetailsController: UIViewController{
         }
         
     }
+    
+    
     
 }
